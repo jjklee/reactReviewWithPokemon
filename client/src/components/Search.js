@@ -6,7 +6,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: 'hello'
+      text: 'pokemon'
     }
     // this.handleSubmit = this.handleSubmit.bind(this);
     // this.handleInputChange = this.handleInputChange.bind(this);
@@ -21,7 +21,7 @@ class Search extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let query = this.state.text
-    getPokemon(query, PokemonList);
+    getPokemon(query, this.props.updatePokemon);
   }
 
   render() {
