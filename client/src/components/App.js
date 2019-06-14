@@ -9,11 +9,19 @@ class App extends React.Component {
     this.state = {
       pokemon: []
     }
+    this.clearList = this.clearList.bind(this);
     this.updatePokemon = this.updatePokemon.bind(this);
+
   }
 
   componentDidMount() {
     this.setState({ pokemon: this.state.pokemon });
+  }
+
+  clearList() {
+    this.setState({
+      pokemon: []
+    });
   }
 
   updatePokemon(data) {
@@ -25,7 +33,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Search handleSubmit={this.handleSubmit} updatePokemon={this.updatePokemon}/>
+        <Search handleSubmit={this.handleSubmit} updatePokemon={this.updatePokemon} clearList={this.clearList}/>
         <PokemonList pokemons={this.state.pokemon}/>
       </div>
     );
