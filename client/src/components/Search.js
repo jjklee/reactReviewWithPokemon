@@ -6,7 +6,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: '...'
+      text: 'pikachu'
     }
     // this.handleSubmit = this.handleSubmit.bind(this);
     // this.handleInputChange = this.handleInputChange.bind(this);
@@ -26,11 +26,14 @@ class Search extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="search">
       <form action="#">
-        <h3>Search by Name or Number</h3>
-        <input type="text" value={this.state.text} onChange={(e)=> this.handleInput(e)}/>
-        <button onClick={(e) => this.handleSubmit(e)}>Submit</button>
+        <span>Search by Name or Number </span>
+        <input type="text"
+          onClick={() => this.setState({ text: '' })} 
+          value={this.state.text} 
+          onChange={(e)=> this.handleInput(e)}/>
+        <button onClick={(e) => this.handleSubmit(e)}>Submit</button> 
         <button onClick={() => this.props.clearList()}>Clear List</button>
       </form>
     </div>
