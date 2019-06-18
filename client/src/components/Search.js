@@ -8,8 +8,8 @@ class Search extends React.Component {
     this.state = {
       text: 'pikachu'
     }
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInput = this.handleInput.bind(this);
   }
 
   handleInput(e) {

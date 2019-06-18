@@ -22,27 +22,22 @@ class App extends React.Component {
   }
 
   getAllPokemon () {
-    // var allpoke = [];
+    var allpoke = [];
     for (let i = 1; i <= 151; i++) {
       getPokemon(i, (data) => {
-        console.log(data)
-        // allpoke.push(data);
-        this.setState({pokemon : [...this.state.pokemon, data]})
-      })
+        allpoke.push(data);
+        if (allpoke.length === 151) {
+          this.sortAllPoke(allpoke)
+        }
+      });
     }
-    // this.sortAllPoke(allpoke)
   }
 
-  // sortAllPoke(allpoke) {
-  //   for(let j = 0; j < allpoke.length; j++) {
-  //     let value = allpoke[j];
-  //     for (var k = i - 1; k > -1 && allpoke[k].id > value.id; k--) {
-  //       allpoke[k + 1] = allpoke[k];
-  //     }
-  //     allpoke[k + 1] = allpoke;
-  //   }
-  //   this.setState({ pokemon: allpoke });
-  // }
+  sortAllPoke(allpoke) {
+    var arr = allpoke.sort((a, b) => (a.id - b.id))
+    this.setState({ pokemon: arr });
+    
+  }
 
   clearList() {
     this.setState({
