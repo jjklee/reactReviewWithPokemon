@@ -2,7 +2,6 @@
 import React from 'react';
 import Search from './Search'
 import PokemonList from './PokemonList';
-// import axios from 'axios';
 import getPokemon from '../../../lib/getPokemon';
 
 class App extends React.Component {
@@ -14,7 +13,7 @@ class App extends React.Component {
     this.clearList = this.clearList.bind(this);
     this.updatePokemon = this.updatePokemon.bind(this);
     this.getAllPokemon = this.getAllPokemon.bind(this);
-    // this.sortAllPoke = this.sortAllPoke.bind(this);
+    this.sortAllPoke = this.sortAllPoke.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +24,19 @@ class App extends React.Component {
     var allpoke = [];
     for (let i = 1; i <= 151; i++) {
       getPokemon(i, (data) => {
-        allpoke.push(data);
+        // allpoke.push(data);
+        let result = {};
+        let idLen = data.id.toString().length
+        if (idLen === 2) {
+          result.id = `0${data.id}`
+        } else if (idLen === 1) {
+          result.id = `00${data.id}`
+        } else {
+          result.id = data.id
+        }
+        result.name = data.name;
+        result.sprites = data.sprites;
+        allpoke.push(result);
         if (allpoke.length === 151) {
           this.sortAllPoke(allpoke)
         }
@@ -36,7 +47,6 @@ class App extends React.Component {
   sortAllPoke(allpoke) {
     var arr = allpoke.sort((a, b) => (a.id - b.id))
     this.setState({ pokemon: arr });
-    
   }
 
   clearList() {

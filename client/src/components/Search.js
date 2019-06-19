@@ -1,6 +1,5 @@
 import React from 'react';
 import getPokemon from '../../../lib/getPokemon';
-import PokemonList from './PokemonList';
 
 class Search extends React.Component {
   constructor(props) {
